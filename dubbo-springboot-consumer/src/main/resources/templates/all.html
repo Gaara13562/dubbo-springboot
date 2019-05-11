@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>所有用户信息</title>
+</head>
+<body>
+	<h3>所有用户信息如下</h3>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>AGE</th>
+			<th>修改</th>
+			<th>删除</th>
+		</tr>
+		<tr th:each="user : ${allUsers}">
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.age}"></td>
+			<td><a th:href="@{'/user/toUpdateUI/' + ${user.id}}">修改</a></td>
+			<td><a onclick="return confirm('确认删除？')" th:href="@{'/user/del/' + ${user.id}}">删除</a></td>
+		</tr>
+	</table>
+	<div>
+		<a th:href="@{/user/toAddUI}">添加用户</a>
+	</div>
+</body>
+</html>

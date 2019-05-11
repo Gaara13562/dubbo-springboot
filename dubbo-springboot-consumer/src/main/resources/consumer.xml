@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+	<!-- 1. 给当前的 provider 取名 -->
+	<dubbo:application name="dubbo_springboot_consumer">
+		<dubbo:parameter key="qos.enable" value="true" />
+		<dubbo:parameter key="qos.accept.foreign.ip" value="false" />
+		<dubbo:parameter key="qos.port" value="33333" />
+	</dubbo:application>
+
+	<!-- 2. 配置注册中心，这里是集群的模式 -->
+	<dubbo:registry protocol="zookeeper"
+		address="node1:2181,node2:2181,node3:2181" group="dubbo_springboot"
+		client="zkclient" />
+
+	<!-- 3.1 生成远程服务代理，可以和本地bean一样使用demoService -->
+	<!-- <dubbo:reference id="menuServiceInter" interface="study.service.IUserService" /> -->
+
+	<!-- 3.2 第3.1步同样可以用注解代替 @Reference -->
+	<dubbo:annotation package="study.consumer.controller" />
+
+</beans>

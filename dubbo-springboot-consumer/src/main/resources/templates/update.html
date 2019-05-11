@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>更新用户页面</title>
+</head>
+<body>
+	<h3>用户基本信息</h3>
+	<form action="/user/update" method="post">
+		<input type="hidden" name="id" th:value="${user.id}">
+		<table>
+			<tr>
+				<td>用户名</td>
+				<td><input type="text" name="name" th:value="${user.name}"></td>
+			</tr>
+			<tr>
+				<td>年龄</td>
+				<td><input type="text" name="age" th:value="${user.age}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="确认修改"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><a th:href="@{/user/}">返回</a></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
